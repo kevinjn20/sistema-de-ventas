@@ -1,0 +1,33 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+
+# Frontend permitido (sin "*" en produccion). Sobreescribir por entorno si aplica.
+app:
+  jwt:
+    secret: ${JWT_SECRET}
+    expiration-ms: ${JWT_EXPIRATION_MS:86400000}
+  cors:
+    allowed-origins: ${APP_CORS_ALLOWED_ORIGINS}
+  admin:
+    username: ${APP_ADMIN_USERNAME}
+    password: ${APP_ADMIN_PASSWORD}
+  dashboard:
+    stock-minimo: ${APP_DASHBOARD_STOCK_MINIMO:5}

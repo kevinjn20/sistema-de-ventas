@@ -1,0 +1,57 @@
+#!/bin/sh
+# ---------------------------------------------------------------------------
+# Apache Maven Wrapper
+# ---------------------------------------------------------------------------
+# Resolve links
+PRG="$0"
+while [ -h "$PRG" ] ; do
+    ls=`ls -ld "$PRG"`
+    link=`expr "$ls" : '.*-> \(.*\)$'`
+    if expr "$link" : '/.*' > /dev/null; then
+        PRG="$link"
+    else
+        PRG=`dirname "$PRG"`/"$link"
+    fi
+done
+SAVED="`pwd`"
+cd "`dirname \"$PRG\"`/." >/dev/null
+APP_HOME="`pwd -P`"
+cd "$SAVED" >/dev/null
+
+# Determine Java command
+if [ -n "$JAVA_HOME" ] ; then
+    JAVACMD="$JAVA_HOME/bin/java"
+else
+    JAVACMD=$(command -v java 2>/dev/null)
+fi
+
+if [ -z "$JAVACMD" ] || [ ! -x "$JAVACMD" ] ; then
+    >&2 echo "Error: JAVA_HOME is not set and no 'java' command could be found in your PATH."
+    exit 1
+fi
+
+MAVEN_HOME=$APP_HOME/.mvn/wrapper
+MAVEN_OPTS=${MAVEN_OPTS:-""}
+
+WRAPPER_JAR="$MAVEN_HOME/maven-wrapper.jar"
+if [ ! -f "$WRAPPER_JAR" ] ; then
+    wrapperUrl="https://repo.maven.apache.org/maven2/org/apache/maven/wrapper/maven-wrapper/3.2.0/maven-wrapper-3.2.0.jar"
+    if command -v curl > /dev/null 2>&1 ; then
+        echo "Downloading Maven Wrapper..."
+        curl -sS -o "$WRAPPER_JAR" "$wrapperUrl"
+    elif command -v wget > /dev/null 2>&1 ; then
+        echo "Downloading Maven Wrapper..."
+        wget -q -O "$WRAPPER_JAR" "$wrapperUrl"
+    fi
+    if [ ! -f "$WRAPPER_JAR" ] ; then
+        echo "Error: unable to download Maven Wrapper"
+        exit 1
+    fi
+fi
+
+exec "$JAVACMD" \
+    $MAVEN_OPTS \
+    "-Dmaven.multiModuleProjectDirectory=$APP_HOME" \
+    -classpath "$WRAPPER_JAR" \
+    org.apache.maven.wrapper.MavenWrapperMain \
+    "$@"

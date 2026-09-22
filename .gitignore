@@ -1,0 +1,24 @@
+# Environment
+.env
+.env.local
+.env.*.local
+!.env.example
+application-prod.yml
+*.log
+npm-debug.log*
+
+# Build outputs (también cubiertos por backend/.gitignore y frontend/.gitignore)
+target/
+dist/
+node_modules/
+coverage/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
