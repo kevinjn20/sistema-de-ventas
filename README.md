@@ -129,14 +129,3 @@ cd frontend && npm run build       # dist/ (tsc estricto + vite)
 ```
 
 Estado verificado en este cierre: **backend 60/60 ✅, frontend 16/16 ✅, `mvn package` ✅, `vite build` ✅, `eslint` ✅**. Se corrigieron 5 JSONs malformados en tests de controllers y se añadió handler `400` para JSON inválido.
-
-## Deuda técnica / roadmap
-
-- Sin migraciones versionadas (`resources/db/`): `validate` + Flyway/Liquibase pendiente para prod real.
-- Sin CI: se propone `.github/workflows/ci.yml` (backend Java 17 + frontend `npm ci/test/build`).
-- Sin screenshots en `docs/screenshots/` ni licencia (se sugiere MIT para portafolio público).
-- Docker Compose verificado con `docker compose config`; el `build` de imágenes requiere Docker Desktop en ejecución.
-
-## Licencia
-
-Sin licencia definida aún. Para GitHub público se recomienda MIT.
